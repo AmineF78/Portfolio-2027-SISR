@@ -1,0 +1,935 @@
+
+<!DOCTYPE html>
+<html lang="fr" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="theme-color" content="#050914">
+    <meta name="description" content="Portfolio de soutenance BTS SIO SISR — systèmes, réseaux et support informatique">
+
+    <title>Portfolio BTS SIO SISR | Soutenance</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+
+<body>
+
+    <!-- BACKGROUND -->
+    <div class="aurora-bg">
+        <div class="aurora-blob blob-1"></div>
+        <div class="aurora-blob blob-2"></div>
+        <div class="aurora-blob blob-3"></div>
+    </div>
+
+    <canvas id="particleCanvas"></canvas>
+    <div class="noise-overlay"></div>
+
+    <!-- INTERFACE -->
+    <div class="presentation-ui">
+
+        <header class="slide-header">
+
+            <button class="brand" id="homeBtn" type="button" aria-label="Retour à l’accueil et redémarrer le chronomètre" title="Retour à l’accueil et redémarrer le chronomètre">AF<span>_</span></button>
+
+            <div class="exam-status">
+                <span class="pulse-dot"></span>
+                <span class="mono-text">
+                    SOUTENANCE BTS SIO SISR · 10 MIN · 10 DIAPOS
+                </span>
+            </div>
+
+            <div class="header-actions">
+
+                <div class="timer-control" aria-label="Chronomètre de présentation">
+                    <div class="timer-readout">
+                        <span class="timer-label">TEMPS</span>
+                        <strong id="presentationTimer" role="timer" aria-live="off">00:00</strong>
+                        <span class="timer-target">/ 10:00</span>
+                        <span id="timerAlert" class="timer-alert" role="status" aria-live="polite" hidden>2 min restantes</span>
+                    </div>
+                    <button id="timerToggleBtn" class="ui-button timer-button"
+                        aria-label="Démarrer le chronomètre" title="Démarrer / mettre en pause" aria-pressed="false">▶</button>
+                    <button id="timerResetBtn" class="ui-button timer-button"
+                        aria-label="Réinitialiser le chronomètre" title="Réinitialiser">↺</button>
+                </div>
+
+                <button id="toggleNotesBtn" class="ui-button"
+                    aria-label="Ouvrir les notes dans une fenêtre séparée"
+                    aria-pressed="false">
+                    <span>NOTES</span>
+                </button>
+
+                <button id="fullscreenBtn" class="ui-button"
+                    aria-label="Activer le plein écran">
+                    ⛶
+                </button>
+
+            </div>
+
+        </header>
+
+        <!-- NAVIGATION -->
+        <button class="nav-arrow prev-arrow" id="prevBtn"
+            aria-label="Diapositive précédente">
+
+            <svg viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2">
+                <polyline points="15 18 9 12 15 6"/>
+            </svg>
+
+        </button>
+
+        <button class="nav-arrow next-arrow" id="nextBtn"
+            aria-label="Diapositive suivante">
+
+            <svg viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2">
+                <polyline points="9 18 15 12 9 6"/>
+            </svg>
+
+        </button>
+
+        <!-- PROGRESSION -->
+        <div class="progress-container">
+            <div class="progress-bar" id="progressBar"></div>
+        </div>
+
+        <div class="slide-counter">
+            <span id="currentSlideNum">01</span>
+            <span class="counter-separator">/</span>
+            <span id="totalSlidesNum">10</span>
+        </div>
+
+        <div class="slide-indicators" id="slideIndicators"></div>
+
+        <div class="slide-transition" id="slideTransition" aria-hidden="true">
+            <div class="transition-title-card">
+                <span class="badge-tech highlight">DIAPOSITIVE <span id="transitionSlideNumber">02 / 10</span></span>
+                <h2 id="transitionTitle">Sommaire de la présentation</h2>
+            </div>
+        </div>
+
+    </div>
+
+
+    <!-- PRESENTATION -->
+    <main class="slider-container" id="slider">
+
+
+        <!-- 01 : INTRODUCTION -->
+        <section class="slide active" data-index="0" data-transition-title="Présentation d’Amine Fakhri">
+
+            <div class="slide-content center-content">
+
+                <div class="badge-tech highlight mb-2">
+                    PORTFOLIO PROFESSIONNEL
+                </div>
+
+                <div class="terminal-label">
+                    <span class="terminal-dot"></span>
+                    SYSTEM / PRESENTATION / 2026
+                </div>
+
+                <h1 class="hero-title" id="scramble-text"
+                    data-text="Amine Fakhri.">
+                    Amine Fakhri.
+                </h1>
+
+                <h2 class="hero-subtitle gradient-text">
+                    BTS SIO — OPTION SISR
+                </h2>
+
+                <p class="hero-desc">
+                    Administration des systèmes et des réseaux.<br>
+                    Support informatique · Infrastructure · Cybersécurité.
+                </p>
+
+                <div class="hero-separator"></div>
+
+                <p class="hero-meta">
+                    H3 Campus Poissy
+                    <span>•</span>
+                    Alternance en cours · MINARM
+                    <span>•</span>
+                    Ministère des Armées
+                </p>
+
+                <div class="hint-text mt-2">
+                    UTILISER LES FLÈCHES POUR NAVIGUER
+                </div>
+
+            </div>
+
+            <div class="slide-decoration">01 / INTRO</div>
+
+            <aside class="oral-notes">
+                <h3>🎤 Introduction</h3>
+                <p>
+                    Bonjour, je m'appelle Amine Fakhri.
+                    Je suis étudiant en BTS SIO, option SISR,
+                    au sein de H3 Campus Poissy.
+                </p>
+                <p>
+                    Cette présentation revient sur mon parcours et mon expérience actuelle au CNAD.
+                </p>
+                <strong>Transition :</strong>
+                Je vous présente d’abord le fil conducteur de mon oral.
+            </aside>
+
+        </section>
+
+
+
+        <!-- 02 : SOMMAIRE -->
+        <section class="slide" data-index="1" data-transition-title="Sommaire de la présentation">
+            <div class="slide-content">
+                <div class="slide-title-wrapper">
+                    <span class="slide-num">02.</span>
+                    <h2 class="slide-title">Sommaire de la présentation</h2>
+                </div>
+                <p class="section-intro">Voici les grandes étapes de mon oral.</p>
+                <div class="grid-3-cols mt-2 agenda-grid">
+                    <div class="glass-panel">
+                        <span class="step-badge">01 / PARCOURS</span>
+                        <h3>Mon parcours</h3>
+                        <p>Formations et expériences professionnelles.</p>
+                    </div>
+                    <div class="glass-panel">
+                        <span class="step-badge">02 / ENVIRONNEMENT</span>
+                        <h3>Mon environnement professionnel</h3>
+                        <p>Le CND, le CNAD et mes missions de support.</p>
+                    </div>
+                    <div class="glass-panel">
+                        <span class="step-badge">03 / PROJET</span>
+                        <h3>Migration vers Windows 11</h3>
+                        <p>Le traitement des incidents d’échec de mise à jour.</p>
+                    </div>
+                    <div class="glass-panel">
+                        <span class="step-badge">04 / VEILLE</span>
+                        <h3>L’hameçonnage</h3>
+                        <p>Un sujet de cybersécurité et ma méthode de veille.</p>
+                    </div>
+                    <div class="glass-panel">
+                        <span class="step-badge">05 / COMPÉTENCES</span>
+                        <h3>Tableau de synthèse E4</h3>
+                        <p>Mes réalisations et les compétences associées.</p>
+                    </div>
+                </div>
+            </div>
+            <aside class="oral-notes">
+                <h3>🎤 Sommaire</h3>
+                <p>Je vais vous présenter mon parcours, mon environnement professionnel et les missions que je réalise. Je développerai plus particulièrement mon travail sur les incidents liés à la migration des postes vers Windows 11. Je terminerai par ma veille sur l’hameçonnage et par mon tableau de synthèse des compétences.</p>
+                <strong>Transition :</strong> Je commence par vous présenter mon parcours.
+            </aside>
+        </section>
+
+        <!-- 03 : PARCOURS -->
+        <section class="slide" data-index="2">
+
+            <div class="slide-content">
+
+                <div class="slide-title-wrapper">
+                    <span class="slide-num">03.</span>
+                    <h2 class="slide-title">Mon parcours : formations et expériences</h2>
+                </div>
+
+                <p class="section-intro">
+                    Du plus récent au plus ancien · le BTS SIO et l’alternance au MINARM se poursuivent en parallèle.
+                </p>
+
+                <ol class="timeline" aria-label="Frise chronologique du parcours d’Amine Fakhri">
+                    <li class="timeline-item experience-event current-event">
+                        <time class="timeline-date" datetime="2025-10">Depuis 10/2025</time>
+                        <span class="timeline-point" aria-hidden="true"></span>
+                        <div class="glass-panel timeline-card current-experience">
+                            <span class="timeline-type experience">ALTERNANCE · EN COURS</span>
+                            <h3>MINARM · CND / CNAD</h3>
+                            <p>Technicien helpdesk en alternance · support à distance des utilisateurs.</p>
+                        </div>
+                    </li>
+                    <li class="timeline-item formation-event current-event">
+                        <time class="timeline-date" datetime="2025-09">Depuis 09/2025</time>
+                        <span class="timeline-point" aria-hidden="true"></span>
+                        <div class="glass-panel timeline-card">
+                            <span class="timeline-type formation">FORMATION · EN COURS</span>
+                            <h3>BTS SIO · option SISR</h3>
+                            <p>H3Campus Poissy · systèmes et réseaux.</p>
+                        </div>
+                    </li>
+                    <li class="timeline-item experience-event">
+                        <div class="timeline-date"><time datetime="2024-10">10/2024</time><span aria-hidden="true">→</span><time datetime="2025-09">09/2025</time></div>
+                        <span class="timeline-point" aria-hidden="true"></span>
+                        <div class="glass-panel timeline-card">
+                            <span class="timeline-type experience">EXPÉRIENCE</span>
+                            <h3>Helpline · Technicien Help Desk</h3>
+                            <p>Support utilisateurs Windows 10/11 pour le client Wavestone à La Défense, gestion des demandes dans ServiceNow et escalade des incidents.</p>
+                        </div>
+                    </li>
+                    <li class="timeline-item experience-event">
+                        <div class="timeline-date"><time datetime="2023-07">07/2023</time><span aria-hidden="true">→</span><time datetime="2024-10">10/2024</time></div>
+                        <span class="timeline-point" aria-hidden="true"></span>
+                        <div class="glass-panel timeline-card">
+                            <span class="timeline-type experience">EXPÉRIENCE</span>
+                            <h3>WHPC · Technicien Help Desk</h3>
+                            <p>Assistance Windows et applications métiers, tickets GLPI, maintenance des équipements.</p>
+                        </div>
+                    </li>
+                    <li class="timeline-item experience-event">
+                        <div class="timeline-date"><time datetime="2023-02">02/2023</time><span aria-hidden="true">→</span><time datetime="2023-07">07/2023</time></div>
+                        <span class="timeline-point" aria-hidden="true"></span>
+                        <div class="glass-panel timeline-card">
+                            <span class="timeline-type experience">EXPÉRIENCE · STAGE</span>
+                            <h3>Digitalcook · Technicien Help Desk</h3>
+                            <p>Support N1/N2 Windows, configuration des postes, accès AD / Office 365 et documentation.</p>
+                        </div>
+                    </li>
+                    <li class="timeline-item formation-event">
+                        <div class="timeline-date"><time datetime="2022-09">09/2022</time><span aria-hidden="true">→</span><time datetime="2023-02">02/2023</time></div>
+                        <span class="timeline-point" aria-hidden="true"></span>
+                        <div class="glass-panel timeline-card">
+                            <span class="timeline-type formation">FORMATION</span>
+                            <h3>Bootcamp informatique</h3>
+                            <p>START ZUP.</p>
+                        </div>
+                    </li>
+                    <li class="timeline-item formation-event">
+                        <div class="timeline-date"><time datetime="2021-09">09/2021</time><span aria-hidden="true">→</span><time datetime="2022-06">06/2022</time></div>
+                        <span class="timeline-point" aria-hidden="true"></span>
+                        <div class="glass-panel timeline-card">
+                            <span class="timeline-type formation">FORMATION · 1RE ANNÉE</span>
+                            <h3>BUT Techniques de commercialisation (TC)</h3>
+                            <p>IUT de Mantes.</p>
+                        </div>
+                    </li>
+                    <li class="timeline-item formation-event">
+                        <div class="timeline-date"><time datetime="2020-09">09/2020</time><span aria-hidden="true">→</span><time datetime="2021-07">07/2021</time></div>
+                        <span class="timeline-point" aria-hidden="true"></span>
+                        <div class="glass-panel timeline-card">
+                            <span class="timeline-type formation">FORMATION</span>
+                            <h3>Baccalauréat STMG · option Marketing</h3>
+                            <p>Lycée L.Sedar Senghor.</p>
+                        </div>
+                    </li>
+                </ol>
+
+            </div>
+
+            <aside class="oral-notes">
+                <h3>🎤 Mon parcours</h3>
+                <p>J’ai commencé par un baccalauréat STMG, option marketing, puis j’ai suivi une première année de BUT Techniques de commercialisation à l’IUT de Mantes. J’ai choisi de quitter cette formation, car les débouchés dans le marketing ne correspondaient pas à mon projet.</p>
+                <p>Je me suis alors orienté vers l’informatique et j’ai suivi un bootcamp chez START ZUP. Après cette formation, j’ai réalisé un stage de technicien helpdesk chez Digitalcook. Cette première expérience m’a conforté dans mon choix de travailler dans le support informatique.</p>
+                <p>J’ai ensuite travaillé deux ans dans le helpdesk : un an chez WHPC, puis un an chez Helpline, une ESN, pour le client Wavestone à La Défense. Après ces expériences, j’ai décidé de reprendre mes études pour construire mon projet professionnel sur le long terme, avec l’objectif de devenir ingénieur.</p>
+                <p>Aujourd’hui, je prépare un BTS SIO SISR à H3Campus et je suis technicien helpdesk en alternance au CNAD, au sein du CND.</p>
+                <strong>Transition :</strong> Je vais maintenant vous présenter le CND et le CNAD, où je réalise mon alternance.
+            </aside>
+
+        </section>
+
+
+        <!-- 04 : PRÉSENTATION DE L'ENTREPRISE -->
+        <section class="slide company-slide" data-index="3">
+
+            <div class="slide-content">
+
+                <div class="slide-title-wrapper">
+                    <span class="slide-num">04.</span>
+                    <h2 class="slide-title">Mon organisation : MINARM · CND · CNAD</h2>
+                </div>
+
+                <p class="section-intro">
+                    Le Centre national d’appui à distance (CNAD) est au sein du Commissariat au numérique de défense (CND). J’y suis technicien helpdesk en alternance.
+                </p>
+
+                <div class="layout-2-cols company-overview">
+                    <div class="glass-panel spotlight-card">
+                        <span class="badge-tech highlight">ENVIRONNEMENT</span>
+                        <h3>Défense et secteur public</h3>
+                        <p>Un environnement institutionnel exigeant, avec des priorités fortes pour les systèmes d’information.</p>
+                        <div class="tech-grid mt-2">
+                            <span class="tech-tag">Sécurité</span>
+                            <span class="tech-tag">Confidentialité</span>
+                            <span class="tech-tag">Disponibilité</span>
+                            <span class="tech-tag">Traçabilité</span>
+                        </div>
+                    </div>
+
+                    <div class="glass-panel spotlight-card">
+                        <span class="badge-tech">ORGANISATION DU SUPPORT</span>
+                        <h3>Une prise en charge par périmètre</h3>
+                        <ul class="clean-list">
+                            <li><strong>Plateau 1 :</strong> Paris intra-muros, VIP/VOP et THA.</li>
+                            <li><strong>Plateau 2 :</strong> téléphonie et bases marines.</li>
+                            <li><strong>Plateau 3 :</strong> bases aériennes et Paris extra-muros.<br><strong>Back-office :</strong> demandes nécessitant une expertise complémentaire.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <details class="org-chart-details" open>
+                    <summary>
+                        <img class="org-chart-thumbnail" src="assets/organigramme-cnad.png" alt="">
+                        <span class="org-chart-summary-text">
+                            <strong>Organigramme du Commissariat au numérique de défense</strong>
+                            <small>Version du 08/10/2025 · vue d’ensemble · cliquer pour replier</small>
+                        </span>
+                        <span class="org-chart-toggle" aria-hidden="true">+</span>
+                    </summary>
+                    <figure class="org-chart-frame">
+                        <img src="assets/organigramme-cnad.png"
+                            alt="Organigramme du Commissariat au numérique de défense, daté du 8 octobre 2025">
+                        <figcaption>
+                            Organigramme du Commissariat au numérique de défense · 08/10/2025
+                            <a href="assets/organigramme-cnad.png" target="_blank" rel="noopener noreferrer">AGRANDIR ↗</a>
+                        </figcaption>
+                    </figure>
+                </details>
+
+                <div class="grid-3-cols company-priorities">
+                    <div class="mini-info">
+                        <span>01</span>
+                        <strong>Continuité</strong>
+                        <p>Maintenir les services informatiques.</p>
+                    </div>
+                    <div class="mini-info">
+                        <span>02</span>
+                        <strong>Protection</strong>
+                        <p>Respecter les règles de sécurité.</p>
+                    </div>
+                    <div class="mini-info">
+                        <span>03</span>
+                        <strong>Assistance</strong>
+                        <p>Accompagner les utilisateurs.</p>
+                    </div>
+                </div>
+
+            </div>
+
+            <aside class="oral-notes">
+                <h3>🎤 Présenter le MINARM et le CNAD</h3>
+                <p>Le CND est le Commissariat au numérique de défense. Le CNAD, Centre national d’appui à distance, se trouve au sein du CND et assure le support à distance.</p>
+                <p>Le support est organisé en trois plateaux et un back-office. Le plateau 1 prend en charge Paris intra-muros, les VIP/VOP et le THA. Le plateau 2 couvre la téléphonie et les bases marines. Le plateau 3 concerne les bases aériennes et Paris extra-muros. Le back-office traite les demandes qui nécessitent une expertise complémentaire.</p>
+                <p>Je suis technicien helpdesk sur le plateau 3. Je prends en charge des demandes et des incidents signalés par les utilisateurs. Pour présenter l’organisation, je retiens trois priorités : la continuité de service, la protection des systèmes et l’assistance. L’organigramme permet de situer le CND dans son organisation.</p>
+                <strong>À retenir :</strong>
+                Présenter l’organisation à un niveau général et ne pas détailler d’informations internes sensibles.
+                <br><br>
+                <strong>Transition :</strong>
+                Voyons maintenant les outils et les technologies
+                que j'utilise dans mes missions.
+            </aside>
+
+        </section>
+
+
+        <!-- 05 : ENVIRONNEMENT TECHNIQUE -->
+        <section class="slide" data-index="4">
+
+            <div class="slide-content">
+
+                <div class="slide-title-wrapper">
+                    <span class="slide-num">05.</span>
+                    <h2 class="slide-title">Mon environnement technique</h2>
+                </div>
+
+                <p class="section-intro">
+                    Les principales technologies et solutions
+                    rencontrées dans mes activités professionnelles.
+                </p>
+
+                <div class="tech-environment">
+
+                    <div class="glass-panel spotlight-card">
+                        <span class="tech-symbol">AD</span>
+                        <h3>Active Directory</h3>
+                        <p>
+                            Gestion des comptes, des accès
+                            et des environnements de domaine.
+                        </p>
+                        <span class="tech-category">IDENTITÉS / ANNUAIRE</span>
+                    </div>
+
+                    <div class="glass-panel spotlight-card">
+                        <span class="tech-symbol">MC</span>
+                        <h3>MECM</h3>
+                        <p>
+                            Gestion des postes, déploiements
+                            applicatifs et séquences de tâches.
+                        </p>
+                        <span class="tech-category">GESTION DE PARC</span>
+                    </div>
+
+                    <div class="glass-panel spotlight-card">
+                        <span class="tech-symbol">SN</span>
+                        <h3>ServiceNow</h3>
+                        <p>
+                            Enregistrement, suivi et traçabilité
+                            des demandes et incidents.
+                        </p>
+                        <span class="tech-category">ITSM / SUPPORT</span>
+                    </div>
+
+                    <div class="glass-panel spotlight-card">
+                        <span class="tech-symbol">PM</span>
+                        <h3>PSAUM</h3>
+                        <p>
+                            Supervision et suivi des opérations
+                            de déploiement selon les procédures utilisées.
+                        </p>
+                        <span class="tech-category">MONITORING</span>
+                    </div>
+
+                    <div class="glass-panel spotlight-card">
+                        <span class="tech-symbol">PMAD</span>
+                        <h3>Prise en main à distance</h3>
+                        <p>
+                            Diagnostic et assistance à distance
+                            sur les postes utilisateurs.
+                        </p>
+                        <span class="tech-category">SUPPORT</span>
+                    </div>
+
+                    <div class="glass-panel spotlight-card">
+                        <span class="tech-symbol">WIN</span>
+                        <h3>Windows</h3>
+                        <p>
+                            Diagnostic des postes, services
+                            et environnements utilisateurs.
+                        </p>
+                        <span class="tech-category">SYSTÈMES</span>
+                    </div>
+
+                </div>
+
+                <p class="technical-disclaimer">
+                    Outils mentionnés à titre professionnel ; aucun identifiant,
+                    nom de serveur ou élément d’architecture sensible n’est présenté.
+                </p>
+
+            </div>
+
+            <aside class="oral-notes">
+                <h3>🎤 Environnement technique</h3>
+                <p>
+                    Dans mes missions, je suis amené à utiliser
+                    plusieurs outils complémentaires.
+                </p>
+                <p>
+                    ServiceNow permet notamment de suivre
+                    les incidents. Active Directory intervient
+                    dans la gestion des identités et des accès.
+                </p>
+                <p>
+                    J’utilise la PMAD pour l’assistance à distance.
+                    MECM intervient dans la gestion des postes et les déploiements ;
+                    PSAUM sert au suivi des opérations.
+                </p>
+                <strong>Conseil :</strong>
+                Pour chaque outil, prépare un exemple concret
+                d'utilisation personnelle.
+                <br><br>
+                <strong>Transition :</strong>
+                Je vais expliquer comment une demande de support
+                est traitée.
+            </aside>
+
+        </section>
+
+
+        <!-- 06 : TRAITEMENT DES DEMANDES -->
+        <section class="slide" data-index="5">
+
+            <div class="slide-content">
+
+                <div class="slide-title-wrapper">
+                    <span class="slide-num">06.</span>
+                    <h2 class="slide-title">Organisation du support informatique</h2>
+                </div>
+
+                <p class="section-intro">
+                    Une méthode structurée pour garantir
+                    un traitement efficace et traçable des incidents.
+                </p>
+
+                <div class="support-flow">
+
+                    <div class="glass-panel flow-card">
+                        <span class="step-badge">01</span>
+                        <div class="flow-icon">01</div>
+                        <h3>Réception</h3>
+                        <p>
+                            Appel, mail ou formulaire.
+                            Création du ticket dans ServiceNow.
+                        </p>
+                    </div>
+
+                    <div class="flow-connector">→</div>
+
+                    <div class="glass-panel flow-card">
+                        <span class="step-badge">02</span>
+                        <div class="flow-icon">02</div>
+                        <h3>Qualification</h3>
+                        <p>
+                            Identification du problème,
+                            du contexte, de l'urgence et de l'impact.
+                        </p>
+                    </div>
+
+                    <div class="flow-connector">→</div>
+
+                    <div class="glass-panel flow-card">
+                        <span class="step-badge">03</span>
+                        <div class="flow-icon">03</div>
+                        <h3>Diagnostic</h3>
+                        <p>
+                            Analyse technique, tests,
+                            assistance et recherche de solution.
+                        </p>
+                    </div>
+
+                    <div class="flow-connector">→</div>
+
+                    <div class="glass-panel flow-card">
+                        <span class="step-badge">04</span>
+                        <div class="flow-icon">04</div>
+                        <h3>Résolution</h3>
+                        <p>
+                            Correction, validation avec
+                            l'utilisateur et clôture du ticket.
+                        </p>
+                    </div>
+
+                </div>
+
+                <div class="glass-panel escalation-panel mt-3">
+                    <span class="badge-tech highlight">SI NÉCESSAIRE</span>
+                    <h3>Escalade vers le Back-Office</h3>
+                    <p>
+                        Lorsque l'incident dépasse le périmètre
+                        d'intervention, il est transmis au niveau
+                        de support compétent avec les éléments
+                        de diagnostic disponibles.
+                    </p>
+                </div>
+
+            </div>
+
+            <aside class="oral-notes">
+                <h3>🎤 Expliquer le support</h3>
+                <p>
+                    Le traitement d'un incident suit plusieurs étapes.
+                    Tout commence par la réception de la demande
+                    et son enregistrement dans l'outil de ticketing.
+                </p>
+                <p>
+                    Ensuite, je qualifie l'incident pour comprendre
+                    son impact et son niveau de priorité.
+                </p>
+                <p>
+                    Je réalise un diagnostic et, si possible,
+                    j'applique une solution. Je vérifie ensuite
+                    que le problème est résolu avant la clôture.
+                </p>
+                <p>
+                    Si je ne peux pas résoudre l'incident
+                    dans mon périmètre, je l'escalade.
+                </p>
+                <strong>Question à anticiper :</strong>
+                Quelle différence fais-tu entre un incident
+                et une demande de service ?
+                <br><br>
+                <strong>Transition :</strong>
+                Passons maintenant à un premier projet technique.
+            </aside>
+
+        </section>
+
+
+        <!-- 07 : PROJET MECM -->
+        <section class="slide" data-index="6">
+
+            <div class="slide-content">
+
+                <div class="slide-title-wrapper flex-between">
+                    <div>
+                        <span class="slide-num">07.</span>
+                        <h2 class="slide-title">Projet 01 — Migration vers Windows 11</h2>
+                    </div>
+                    <span class="badge-outline">PROJET D’ÉQUIPE · MINARM</span>
+                </div>
+
+                <div class="project-banner">
+                    <div>
+                        <span class="badge-tech highlight">MODERNISATION / DÉPLOIEMENT / SUPPORT POSTE</span>
+                        <h2>Migration Windows 11</h2>
+                        <p>
+                            Traiter les incidents signalant l’échec d’une mise à jour vers Windows 11 :
+                            analyser les journaux, relancer la séquence selon la procédure,
+                            puis confirmer le résultat avec l’utilisateur.
+                        </p>
+                    </div>
+                    <div class="project-code">WIN11_01</div>
+                </div>
+
+                <div class="grid-3-cols mt-2 migration-stages">
+
+                    <div class="glass-panel">
+                        <span class="step-badge">01 / ANALYSER</span>
+                        <h3>Comprendre l’échec</h3>
+                        <p>Je reçois un ticket signalant qu’une mise à jour vers Windows 11 a échoué sur un poste. Je consulte les journaux pour identifier la cause, par exemple un espace de stockage insuffisant ou un poste éteint pendant la mise à jour.</p>
+                    </div>
+
+                    <div class="glass-panel">
+                        <span class="step-badge">02 / RELANCER</span>
+                        <h3>Appliquer la procédure</h3>
+                        <p>Lorsque la cause est identifiée et que la procédure le prévoit, je relance la séquence de tâches d’installation de Windows 11. Je suis les étapes de traitement prévues pour ce type d’échec.</p>
+                    </div>
+
+                    <div class="glass-panel">
+                        <span class="step-badge">03 / CONFIRMER OU TRANSMETTRE</span>
+                        <h3>Vérifier avec l’utilisateur</h3>
+                        <p>Je confirme avec l’utilisateur que Windows 11 est bien installé. Si la mise à jour échoue encore, je transmets le ticket aux techniciens de proximité, qui poursuivent les manipulations selon leurs procédures.</p>
+                    </div>
+
+                </div>
+
+                <div class="project-result mt-2">
+                    <div>
+                        <span class="result-label">RÉSULTAT ATTENDU À MON NIVEAU</span>
+                        <p>Une mise à jour validée avec l’utilisateur ou un ticket transmis aux techniciens de proximité avec le diagnostic réalisé.</p>
+                    </div>
+                    <div>
+                        <span class="result-label">OUTILS ET MÉTHODES</span>
+                        <div class="tech-grid">
+                            <span class="tech-tag">MECM</span>
+                            <span class="tech-tag">Windows 11</span>
+                            <span class="tech-tag">Séquence de tâches</span>
+                            <span class="tech-tag">Analyse de journaux</span>
+                            <span class="tech-tag">Ticketing</span>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <aside class="oral-notes">
+                <h3>🎤 Projet 01 · Migration Windows 11</h3>
+                <p>Dans ce projet de migration, je reçois des tickets incidents indiquant qu’une mise à jour vers Windows 11 a échoué sur un poste. Je commence par consulter les journaux pour comprendre ce qui s’est passé.</p>
+                <p>Par exemple, l’installation peut échouer si le poste manque d’espace de stockage. Elle peut aussi être interrompue si le poste s’éteint pendant la mise à jour. Le diagnostic m’aide à savoir comment traiter le ticket.</p>
+                <p>En suivant la procédure, je relance la séquence de tâches d’installation de Windows 11. Ensuite, je vérifie avec l’utilisateur que la mise à jour est bien installée. Si elle échoue encore, je transmets le ticket aux techniciens de proximité. Ils prennent le relais et poursuivent les manipulations en s’appuyant sur leurs procédures.</p>
+                <strong>À l’oral :</strong> expliquer un exemple de cause, la relance prescrite et la vérification avec l’utilisateur.
+                <br><br>
+                <strong>Transition :</strong>
+                Je vais terminer avec un sujet de veille en cybersécurité : l’hameçonnage.
+            </aside>
+
+        </section>
+
+        <!-- 08 : VEILLE HAMEÇONNAGE -->
+        <section class="slide" data-index="7">
+            <div class="slide-content">
+                <div class="slide-title-wrapper">
+                    <span class="slide-num">08.</span>
+                    <h2 class="slide-title">Veille — Reconnaître un courriel frauduleux</h2>
+                </div>
+                <p class="section-intro">
+                    Je repère les sujets sur les forums, notamment Reddit, et grâce à un flux RSS ; je vérifie ensuite les informations avec des sources officielles.
+                </p>
+                <div class="layout-2-cols">
+                    <div class="glass-panel spotlight-card">
+                        <span class="badge-tech highlight">LE PRINCIPE</span>
+                        <h3>Un faux courriel qui pousse à agir</h3>
+                        <p class="section-intro">L’hameçonnage (phishing) imite un organisme ou une personne de confiance pour inciter à cliquer, ouvrir une pièce jointe ou donner un mot de passe.</p>
+                        <span class="badge-tech">3 INDICES À VÉRIFIER</span>
+                        <div class="veille-step"><span>01</span><div><strong>Une demande inattendue</strong><p>Urgence, menace de blocage ou demande inhabituelle.</p></div></div>
+                        <div class="veille-step"><span>02</span><div><strong>Une adresse ou un lien suspect</strong><p>Le nom de domaine ne correspond pas clairement à l’organisme annoncé.</p></div></div>
+                        <div class="veille-step"><span>03</span><div><strong>Une pièce jointe surprenante</strong><p>Le message demande d’ouvrir un fichier ou de saisir ses identifiants sans raison attendue.</p></div></div>
+                        <p class="technical-disclaimer">Un indice isolé ne prouve pas une fraude : il doit conduire à vérifier le message.</p>
+                    </div>
+                    <div class="glass-panel spotlight-card">
+                        <span class="badge-tech">LES BONS RÉFLEXES</span>
+                        <h3>Ne pas cliquer, vérifier, signaler</h3>
+                        <ul class="clean-list">
+                            <li>Ne pas cliquer sur le lien, ouvrir la pièce jointe ni répondre au message.</li>
+                            <li>Vérifier la demande par un canal officiel, sans utiliser le lien reçu.</li>
+                            <li>Signaler le message au support informatique selon la procédure de l’organisation.</li>
+                            <li>Si un mot de passe a été transmis, prévenir le support et le changer depuis le site officiel.</li>
+                        </ul>
+                        <div class="source-list" aria-label="Sources de la veille">
+                            <span class="badge-tech highlight">SOURCES OFFICIELLES</span>
+                            <a href="https://www.cybermalveillance.gouv.fr/tous-nos-contenus/fiches-reflexes/16" target="_blank" rel="noopener noreferrer">Cybermalveillance.gouv.fr — reconnaître et réagir ↗</a>
+                            <a href="https://cyber.gouv.fr/securisation/10-regles-or-securite-numerique/" target="_blank" rel="noopener noreferrer">ANSSI — règles de sécurité numérique ↗</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <aside class="oral-notes">
+                <h3>🎤 Veille : l’hameçonnage · environ 1 min 15</h3>
+                <p>Pour construire ma veille, je consulte des forums comme Reddit afin de repérer les questions et les retours d’expérience autour de la cybersécurité. J’ai aussi mis en place un flux RSS pour regrouper les nouvelles publications des sources que je suis.</p>
+                <p>Les forums me donnent des pistes, mais je ne prends pas une discussion comme une validation. Je recoupe les informations avec des sources officielles, comme l’ANSSI et Cybermalveillance.gouv.fr, que vous voyez ici.</p>
+                <p>Le sujet que j’ai retenu est l’hameçonnage par courriel, ou phishing : un faux message imite une personne ou un organisme de confiance pour inciter à cliquer, ouvrir une pièce jointe ou transmettre un mot de passe. Je vérifie si la demande est inattendue, si l’adresse ou le lien semble incohérent et si la pièce jointe était attendue.</p>
+                <p>En cas de doute, je ne clique pas, je vérifie par un canal officiel et je signale le message au support. Cette veille rejoint le rôle du technicien dans la prévention et l’accompagnement des utilisateurs.</p>
+                <strong>Transition :</strong> Je termine par un bilan des compétences du BTS.
+            </aside>
+        </section>
+
+
+        <!-- 09 : COMPETENCES -->
+        <section class="slide" data-index="8">
+
+            <div class="slide-content">
+
+                <div class="slide-title-wrapper">
+                    <span class="slide-num">09.</span>
+                    <h2 class="slide-title">Compétences du BTS SIO SISR</h2>
+                </div>
+
+                <p class="section-intro">
+                    Je présente ici mon tableau de synthèse E4 dans son format original.
+                </p>
+
+                <div class="synthesis-file-card">
+                    <img class="synthesis-thumbnail" src="assets/tableau-synthese-apercu.jpg" alt="Aperçu complet sur une page du tableau de synthèse E4">
+                    <div class="synthesis-file-copy">
+                        <span class="badge-tech highlight">DOCUMENT ORIGINAL · ÉPREUVE E4</span>
+                        <h3>Tableau de synthèse des compétences</h3>
+                        <p>La nouvelle version complète tient sur une page. Ouvre l’aperçu en grand pour la lire, ou télécharge le fichier Numbers original.</p>
+                    </div>
+                    <div class="synthesis-actions">
+                        <button type="button" class="primary-button" id="openSynthesisBtn">Afficher le tableau en grand</button>
+                        <a class="secondary-button" href="assets/tableau-synthese-e4.numbers" download>Télécharger le fichier Numbers original</a>
+                    </div>
+                </div>
+
+            </div>
+
+            <aside class="oral-notes">
+                <h3>🎤 Tableau de synthèse E4</h3>
+                <p>Cette diapositive présente le document officiel que j’ai préparé pour l’épreuve E4. Il rassemble mes réalisations et les compétences associées au BTS SIO.</p>
+                <p>Je peux donner quelques exemples visibles dans le tableau : le suivi du cycle de vie des postes, le déploiement de logiciels par script, l’assistance aux utilisateurs et la migration vers Windows 11 développée juste avant.</p>
+                <p>Le tableau complet est accessible depuis le portfolio pour que le jury puisse le consulter en grand format.</p>
+                <strong>Transition :</strong>
+                Je termine par le bilan de mon parcours.
+            </aside>
+
+        </section>
+
+
+        <!-- 10 : CONCLUSION -->
+        <section class="slide" data-index="9" data-transition-title="Conclusion : mon bilan professionnel">
+
+            <div class="slide-content center-content">
+
+                <div class="badge-tech highlight mb-2">
+                    FIN DE PRÉSENTATION
+                </div>
+
+                <h2 class="hero-title conclusion-title">
+                    Construire.<br>
+                    Administrer.<br>
+                    Sécuriser.
+                </h2>
+
+                <h3 class="hero-subtitle gradient-text">
+                    Mon bilan professionnel.
+                </h3>
+
+                <p class="hero-desc conclusion-description">
+                    Ces expériences m'ont permis de développer
+                    mes compétences techniques, ma rigueur
+                    et ma capacité à intervenir dans des
+                    environnements informatiques exigeants.
+                </p>
+
+                <div class="conclusion-stats">
+
+                    <div>
+                        <strong>01</strong>
+                        <span>Administration</span>
+                    </div>
+
+                    <div>
+                        <strong>02</strong>
+                        <span>Support</span>
+                    </div>
+
+                    <div>
+                        <strong>03</strong>
+                        <span>Sécurité</span>
+                    </div>
+
+                    <div>
+                        <strong>04</strong>
+                        <span>Projets</span>
+                    </div>
+
+                </div>
+
+                <div class="hero-separator"></div>
+
+                <h3 class="thanks-title">
+                    Merci pour votre attention.
+                </h3>
+
+                <p class="hero-desc mt-1">
+                    Je suis maintenant disponible pour répondre
+                    à vos questions.
+                </p>
+
+                <div class="action-buttons mt-3">
+                    <button class="btn-primary large-btn" id="restartBtn">
+                        RECOMMENCER LA PRÉSENTATION ↺
+                    </button>
+                </div>
+
+            </div>
+
+            <aside class="oral-notes">
+                <h3>🎤 Conclusion</h3>
+                <p>
+                    Pour conclure, cette expérience professionnelle
+                    m'a permis de renforcer mes connaissances
+                    en administration, en support et en gestion
+                    des infrastructures.
+                </p>
+                <p>
+                    Elle m'a également permis de développer
+                    mon autonomie, ma rigueur et ma capacité
+                    à travailler dans un environnement exigeant.
+                </p>
+                <strong>Phrase finale :</strong>
+                Je vous remercie pour votre attention
+                et je suis à votre disposition pour répondre
+                à vos questions.
+            </aside>
+
+            <div class="slide-decoration">10 / CONCLUSION</div>
+
+        </section>
+
+    </main>
+
+    <dialog class="synthesis-dialog" id="synthesisDialog" aria-labelledby="synthesisDialogTitle">
+        <div class="synthesis-dialog-header">
+            <div>
+                <span class="badge-tech highlight">DOCUMENT ORIGINAL · ÉPREUVE E4</span>
+                <h2 id="synthesisDialogTitle">Tableau de synthèse des compétences</h2>
+            </div>
+            <div class="synthesis-dialog-actions">
+                <a class="secondary-button" href="assets/tableau-synthese-e4.pdf" target="_blank" rel="noopener">Ouvrir le PDF</a>
+                <a class="secondary-button" href="assets/tableau-synthese-e4.numbers" download>Télécharger le fichier Numbers</a>
+                <button type="button" class="ui-button" id="closeSynthesisBtn" aria-label="Fermer le tableau">✕</button>
+            </div>
+        </div>
+        <div class="synthesis-frame-wrap">
+            <iframe class="synthesis-pdf" src="assets/tableau-synthese-e4.pdf#view=FitPage" title="Tableau de synthèse E4 complet, une page A3" loading="lazy"></iframe>
+        </div>
+    </dialog>
+
+</body>
+</html>
