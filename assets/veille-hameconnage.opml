@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<opml version="2.0">
+  <head>
+    <title>Veille sur l’hameçonnage — Amine Fakhri</title>
+    <dateCreated>Mon, 23 Nov 2026 12:00:00 GMT</dateCreated>
+  </head>
+  <body>
+    <outline text="Veille sur l’hameçonnage">
+      <outline type="rss" text="CERT-FR — Alertes" title="CERT-FR — Alertes" xmlUrl="https://cert.cyber.gouv.fr/alerte/feed/" htmlUrl="https://cert.cyber.gouv.fr/" />
+      <outline type="rss" text="Cybermalveillance.gouv.fr — Alertes" title="Cybermalveillance.gouv.fr — Alertes" xmlUrl="https://www.cybermalveillance.gouv.fr/feed/atom-flux-alertes" htmlUrl="https://www.cybermalveillance.gouv.fr/" />
+      <outline type="rss" text="BleepingComputer — Actualités cybersécurité" title="BleepingComputer — Actualités cybersécurité" xmlUrl="https://www.bleepingcomputer.com/feed/" htmlUrl="https://www.bleepingcomputer.com/" />
+      <outline type="rss" text="Reddit — r/phishing (discussions à recouper)" title="Reddit — r/phishing (discussions à recouper)" xmlUrl="https://www.reddit.com/r/phishing/.rss" htmlUrl="https://www.reddit.com/r/phishing/" />
+    </outline>
+  </body>
+</opml>
